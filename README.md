@@ -2,6 +2,16 @@
 
 Command line application that shows you a random quote using [forismatic.com](http://forismatic.com/en/) API. 
 
+```sh
+~ ❯❯❯ quotesOnTheGo
+When the solution is simple, God is answering.  
+
+-- Albert Einstein
+~ ❯❯❯ quotesOnTheGo
+Silence at the proper season is wisdom, and better than any speech.  
+
+-- Plutarch 
+```
 
 ### Installing
 

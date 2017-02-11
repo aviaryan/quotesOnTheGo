@@ -7,6 +7,7 @@ Command line application that shows you a random quote using [forismatic.com](ht
 When the solution is simple, God is answering.  
 
 -- Albert Einstein
+~ ❯❯❯
 ~ ❯❯❯ quotesOnTheGo
 Silence at the proper season is wisdom, and better than any speech.  
 

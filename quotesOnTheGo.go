@@ -29,8 +29,8 @@ func getQuote(target interface{}) error {
 }
 
 func main() {
-	fmt.Println("Hello World")
 	fRes := new(forismaticResp)
 	getQuote(fRes)
-	fmt.Println(fRes)
+	fmt.Println(fRes.QuoteText)
+	fmt.Println("\n---- " + fRes.QuoteAuthor)
 }

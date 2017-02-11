@@ -42,6 +42,19 @@ func getQuote(target interface{}) error {
 	return json.NewDecoder(resp.Body).Decode(target)
 }
 
+func getQuoteRobust() *forismaticResp {
+	// 15% times a request fails if requests are being done successively
+	var err error
+	fRes := new(forismaticResp)
+	for i := 0; i < 5; i++ { // 5 times seems ok
+		err = getQuote(fRes)
+		if err != nil && fRes != nil && fRes.QuoteText != "" {
+			break
+		}
+	}
+	return fRes
+}
+
 func showHelp() {
 	fmt.Println(helpStr)
 }
@@ -54,8 +67,7 @@ func main() {
 	// http://thenewstack.io/cli-command-line-programming-with-go/
 	argCount := len(os.Args[1:])
 	if argCount == 0 {
-		fRes := new(forismaticResp)
-		getQuote(fRes)
+		fRes := getQuoteRobust()
 		fmt.Println(fRes.QuoteText)
 		fmt.Println("\n-- " + fRes.QuoteAuthor)
 	} else if argCount == 1 {

@@ -3,8 +3,7 @@ package main
 import "testing"
 
 func TestApi(t *testing.T) {
-	fRes := new(forismaticResp)
-	getQuote(fRes)
+	fRes := getQuoteRobust()
 	if fRes == nil || fRes.QuoteText == "" {
 		t.Error("Unable to fetch quote")
 	}

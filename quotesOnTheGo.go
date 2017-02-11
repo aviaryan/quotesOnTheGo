@@ -21,7 +21,11 @@ Try it now
 )
 
 type forismaticResp struct {
-	QuoteAuthor, QuoteLink, QuoteText, SenderLink, SenderName string
+	QuoteAuthor string
+	QuoteLink   string
+	QuoteText   string
+	SenderLink  string
+	SenderName  string
 	// ^^ uppercase fields even when json is small
 	// as lowercase are not exported so json package can't access them
 }

@@ -9,6 +9,15 @@ import (
 
 const (
 	forismatcURL = "http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en"
+	verInfo      = "quotesOnTheGo v0.0.1"
+	helpStr      = `
+Quotes On The Go
+Running quotesOnTheGo is what it takes to make up your day.
+Try it now
+
+--help:       Show this help
+--version:    Show version information
+`
 )
 
 type forismaticResp struct {
@@ -30,21 +39,10 @@ func getQuote(target interface{}) error {
 }
 
 func showHelp() {
-	s := `
-	Quotes On The Go
-	Running quotesOnTheGo is what it takes to make up your day.
-	Try it now
-
-	--help:       Show this help
-	--version:    Show version information
-	`
-	fmt.Println(s)
+	fmt.Println(helpStr)
 }
 
 func showVersion() {
-	verInfo := `
-	quotesOnTheGo v0.0.1
-	`
 	fmt.Println(verInfo)
 }
 

@@ -3,6 +3,9 @@ package main
 import "testing"
 
 func TestApi(t *testing.T) {
-	// x := 2
-	t.Error("Server error")
+	fRes := new(forismaticResp)
+	getQuote(fRes)
+	if fRes == nil || fRes.QuoteText == "" {
+		t.Error("Unable to fetch quote")
+	}
 }

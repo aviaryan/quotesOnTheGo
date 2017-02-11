@@ -53,7 +53,7 @@ func main() {
 		fRes := new(forismaticResp)
 		getQuote(fRes)
 		fmt.Println(fRes.QuoteText)
-		fmt.Println("\n---- " + fRes.QuoteAuthor)
+		fmt.Println("\n-- " + fRes.QuoteAuthor)
 	} else if argCount == 1 {
 		switch os.Args[1] {
 		case "--help":

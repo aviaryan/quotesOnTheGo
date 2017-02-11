@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 const (
@@ -28,9 +29,41 @@ func getQuote(target interface{}) error {
 	return json.NewDecoder(resp.Body).Decode(target)
 }
 
+func showHelp() {
+	s := `
+	Quotes On The Go
+	Running quotesOnTheGo is what it takes to make up your day.
+	Try it now
+
+	--help:       Show this help
+	--version:    Show version information
+	`
+	fmt.Println(s)
+}
+
+func showVersion() {
+	verInfo := `
+	quotesOnTheGo v0.0.1
+	`
+	fmt.Println(verInfo)
+}
+
 func main() {
-	fRes := new(forismaticResp)
-	getQuote(fRes)
-	fmt.Println(fRes.QuoteText)
-	fmt.Println("\n---- " + fRes.QuoteAuthor)
+	// http://thenewstack.io/cli-command-line-programming-with-go/
+	argCount := len(os.Args[1:])
+	if argCount == 0 {
+		fRes := new(forismaticResp)
+		getQuote(fRes)
+		fmt.Println(fRes.QuoteText)
+		fmt.Println("\n---- " + fRes.QuoteAuthor)
+	} else if argCount == 1 {
+		switch os.Args[1] {
+		case "--help":
+			showHelp()
+		case "--version":
+			showVersion()
+		default:
+			showHelp()
+		}
+	}
 }

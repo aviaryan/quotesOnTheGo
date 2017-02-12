@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
 
 const (
 	forismatcURL = "http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en"
-	verInfo      = "quotesOnTheGo v0.0.1"
+	verInfo      = "quotesOnTheGo v0.0.2"
 	helpStr      = `
 Quotes On The Go
 Running quotesOnTheGo is what it takes to make up your day.
@@ -31,7 +32,9 @@ type forismaticResp struct {
 }
 
 func getQuote(target interface{}) error {
-	resp, err := http.Get(forismatcURL)
+	timeout := time.Duration(4 * time.Second)
+	client := http.Client{Timeout: timeout}
+	resp, err := client.Get(forismatcURL)
 	// handle error
 	if err != nil {
 		fmt.Println(err.Error())
@@ -48,6 +51,7 @@ func getQuoteRobust() *forismaticResp {
 	fRes := new(forismaticResp)
 	for i := 0; i < 5; i++ { // 5 times seems ok
 		err = getQuote(fRes)
+		// fmt.Print("Iteration ", i)
 		if err == nil && fRes != nil && fRes.QuoteText != "" {
 			break
 		}

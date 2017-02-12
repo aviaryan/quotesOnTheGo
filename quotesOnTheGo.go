@@ -48,7 +48,7 @@ func getQuoteRobust() *forismaticResp {
 	fRes := new(forismaticResp)
 	for i := 0; i < 5; i++ { // 5 times seems ok
 		err = getQuote(fRes)
-		if err != nil && fRes != nil && fRes.QuoteText != "" {
+		if err == nil && fRes != nil && fRes.QuoteText != "" {
 			break
 		}
 	}

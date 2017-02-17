@@ -6,11 +6,13 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/briandowns/spinner"
 )
 
 const (
 	forismatcURL = "http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en"
-	verInfo      = "quotesOnTheGo v0.0.2"
+	verInfo      = "quotesOnTheGo v0.0.3"
 	helpStr      = `
 Quotes On The Go
 Running quotesOnTheGo is what it takes to make up your day.
@@ -47,6 +49,10 @@ func getQuote(target interface{}) error {
 
 func getQuoteRobust() *forismaticResp {
 	// 15% times a request fails if requests are being done successively
+	// spinner
+	s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
+	s.Start()
+	// fetch data
 	var err error
 	fRes := new(forismaticResp)
 	for i := 0; i < 5; i++ { // 5 times seems ok
@@ -56,6 +62,7 @@ func getQuoteRobust() *forismaticResp {
 			break
 		}
 	}
+	s.Stop() // stop spinner
 	return fRes
 }
 

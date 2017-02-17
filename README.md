@@ -1,6 +1,6 @@
 # Quotes On The Go
 
-[![Travis branch](https://img.shields.io/travis/aviaryan/quotesOnTheGo/master.svg?maxAge=2592000)](https://travis-ci.org/aviaryan/quotesOnTheGo)
+[![Travis branch](https://img.shields.io/travis/aviaryan/quotesOnTheGo/master.svg?maxAge=60000)](https://travis-ci.org/aviaryan/quotesOnTheGo)
 
 Command line application that shows you a random quote using [forismatic.com](http://forismatic.com/en/) API. 
 
